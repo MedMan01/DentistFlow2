@@ -1,0 +1,80 @@
+<mat-toolbar color="primary">
+
+  <button mat-icon-button (click)="myDrawer.toggle()">
+    <mat-icon >menu</mat-icon>
+  </button>
+
+  <span style="flex:auto"></span>
+  <button mat-button routerLink="/admin/home">Home</button>
+  <button mat-button routerLink="/admin/profile">Profile</button>
+  <button *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('DENTIST')"  mat-button [matMenuTriggerFor]="importMenu">
+    <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+
+    Import
+
+  </button>
+  <mat-menu #importMenu>
+    <button mat-menu-item routerLink="/admin/loadAntecedents">Load Antecedents</button>
+    <button mat-menu-item routerLink="/admin/loadPayments">Load Payments</button>
+  </mat-menu>
+  <button mat-button *ngIf="authService.isAuthenticated">
+    {{authService.username}}
+  </button>
+  <button mat-raised-button color="accent" (click)="logout()">
+    Logout
+  </button>
+
+</mat-toolbar>
+<mat-drawer-container>
+  <mat-drawer #myDrawer  opened="true" mode="side" position="start">
+    <mat-list>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          Dashboard</button>
+      </mat-list-item>
+      <mat-list-item>
+
+        <button mat-button routerLink="/admin/antecedents">
+          <mat-icon>dashboard</mat-icon>
+          Antecedent</button>
+
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/dentists">
+          <mat-icon>dashboard</mat-icon>
+
+          Dentist</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/patients">
+          <mat-icon>dashboard</mat-icon>
+
+          Patient</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/payments">
+          <mat-icon>dashboard</mat-icon>
+
+          Payment</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/rendezvous">
+          <mat-icon>dashboard</mat-icon>
+
+          RendezVous</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/salles">
+          <mat-icon>dashboard</mat-icon>
+
+          Salle</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="min-height: 600px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
