@@ -38,7 +38,7 @@ const routes: Routes = [
       {path:"patients", component:PatientComponent},
       {path:"payments", component:PaymentsComponent},
       {path:"rendezvous", component:RendezvousComponent},
-      {path:"Salle",component:SalleComponent}
+      {path:"salles",component:SalleComponent}
 
     ]}
 

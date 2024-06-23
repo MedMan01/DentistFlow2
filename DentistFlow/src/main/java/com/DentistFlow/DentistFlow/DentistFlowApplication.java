@@ -38,7 +38,7 @@ return args -> {
 	patientRepository.save(Patient.builder().id("QWER-DEDE-ASDCCF-cefwfEWFE")
 			.firstName("Fahd")
 			.lastName("Misnahi")
-			.sexe(Sexe.F)
+			.sexe(Sexe.M)
 			.age(23)
 			.telephone("0623643133")
 			.email("Med@gmail.com")

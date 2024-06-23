@@ -33,6 +33,6 @@ export class AuthService {
     this.isAuthenticated=false;
     this.roles=[];
     this.username=undefined;
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/login')
   }
 }
