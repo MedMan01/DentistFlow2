@@ -32,6 +32,8 @@ import { LoadAntecedentComponent } from './load-antecedent/load-antecedent.compo
 import {AuthorizationGuard} from "./guards/authorisation.guard";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {MatSort, MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import {MatTableModule} from "@angular/material/table";
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     provideAnimationsAsync(),

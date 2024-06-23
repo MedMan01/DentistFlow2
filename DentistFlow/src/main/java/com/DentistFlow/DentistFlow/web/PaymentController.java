@@ -17,16 +17,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class PaymentController {
 
 @Autowired
     private PaymentRepository paymentRepository;
 @Autowired
     private PaymentService paymentService;
-
-
-
-
 
     @GetMapping(path = "/payments")
     public List<Payment> allPayments(){

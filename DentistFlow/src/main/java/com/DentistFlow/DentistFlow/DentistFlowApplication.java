@@ -114,7 +114,7 @@ return args -> {
 				for (int i = 0; i < 4; i++) {
 					int index= random.nextInt(paymentTypes.length);
 					Payment payment=Payment.builder()
-							.amount(1000+(int) (Math.random()+2000))
+							.amount(1000+(int) (Math.random()*2000))
 							.type(paymentTypes[index])
 							.status(PaymentStatus.CREATED)
 							.date(LocalDate.now())
