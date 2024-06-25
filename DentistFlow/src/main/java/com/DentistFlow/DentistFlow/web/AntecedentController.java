@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-
+@CrossOrigin("*")
 public class AntecedentController {
     @Autowired
     private AntecedentRepository antecedentRepository;

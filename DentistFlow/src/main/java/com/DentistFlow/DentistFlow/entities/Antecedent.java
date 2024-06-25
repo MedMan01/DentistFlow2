@@ -17,7 +17,7 @@ public class Antecedent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dateCreation;
-    private String Description;
+    private String description;
     private String file;
 
     @ManyToOne

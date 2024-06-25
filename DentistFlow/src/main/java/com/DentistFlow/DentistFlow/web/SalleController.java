@@ -20,6 +20,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class SalleController {
     @Autowired
     private SalleRepository salleRepository;
@@ -35,6 +36,8 @@ public class SalleController {
     public List<Salle> allSalles(){
         return salleRepository.findAll();
     }
+
+
     @GetMapping("/salles/{id}")
     public Salle SallesById(@PathVariable Long id){
         return salleRepository.findById(id).get();

@@ -2,6 +2,7 @@ package com.DentistFlow.DentistFlow.services;
 
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
+import com.DentistFlow.DentistFlow.entities.Payment;
 import com.DentistFlow.DentistFlow.repository.AntecedentRepository;
 import com.DentistFlow.DentistFlow.repository.PatientRepository;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class AntecedentService {
         // Create and save the antecedent
         Antecedent antecedent = Antecedent.builder()
                 .dateCreation(LocalDate.now())
-                .Description(description)
+                .description(description)
                 .patient(patient)
                 .build();
         return antecedentRepository.save(antecedent);
@@ -61,5 +62,11 @@ public class AntecedentService {
         antecedent.setDescription(description);
         antecedent.setPatient(patient);
         return antecedentRepository.save(antecedent);
+    }
+    public byte[] getPaymentFile( Long antecedentId) throws IOException {
+
+        Antecedent antecedent= antecedentRepository.findById(antecedentId).get();
+        return Files.readAllBytes(Path.of(antecedent.getFile()));
+
     }
 }

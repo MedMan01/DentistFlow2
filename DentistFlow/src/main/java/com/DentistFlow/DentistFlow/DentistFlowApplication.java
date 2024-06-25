@@ -47,7 +47,7 @@ return args -> {
 				for (int i = 0; i < 10; i++) {
 					Antecedent antecedent = Antecedent.builder()
 							.dateCreation(LocalDate.now())
-							.Description("Test"+i)
+							.description("Test"+(i+1))
 							.patient(pt)
 							.build();
 					antecedentRepository.save(antecedent);

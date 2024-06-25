@@ -26,6 +26,7 @@ public class PatientController {
         this.patientRepository = patientRepository;
         this.patientService = patientService;
     }
+
     @GetMapping("/patients")
     public List<Patient> allPatients(){
         return patientRepository.findAll();

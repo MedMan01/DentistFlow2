@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-
+@CrossOrigin("*")
 public class RendezVousController {
     @Autowired
     private RendezVousRepository rendezVousRepository;

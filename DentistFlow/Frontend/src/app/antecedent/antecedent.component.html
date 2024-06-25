@@ -1,9 +1,6 @@
-<div class="container" >
-
+<div class="container">
   <mat-card>
-
     <mat-card-header>
-
       <mat-card-title>
         Antecedents
       </mat-card-title>
@@ -11,8 +8,39 @@
     <mat-divider></mat-divider>
     <mat-card-content>
 
-      antecedent
+      <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z1">
+
+        <!-- Column definitions -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateCreation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Creation </th>
+          <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient </th>
+          <td mat-cell *matCellDef="let element"> {{element.patient.firstName}} {{element.patient.lastName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+
+        <!-- Header row -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+
+        <!-- Data rows -->
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10,20 ,30,100]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
     </mat-card-content>
   </mat-card>
-
 </div>
