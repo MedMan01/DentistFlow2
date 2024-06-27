@@ -4,6 +4,9 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {DentistsService} from "../services/dentists.service";
+import {Patient} from "../model/patient.model";
+import {Salle} from "../model/salle.model";
 
 @Component({
   selector: 'app-salle',
@@ -11,17 +14,16 @@ import {MatSort} from "@angular/material/sort";
   styleUrl: './salle.component.css'
 })
 export class SalleComponent implements OnInit{
-  public salle: any;
-  public dataSource: any;
+  public salle!: Array<Salle>;
+  public dataSource!: MatTableDataSource<Salle>;
   public displayedColumns:string[] =['id','numeroSalle','etatSalle','typeSalle']
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
-  constructor(private http: HttpClient) {
+  constructor(private salleService: DentistsService) {
   }
   ngOnInit() {
-    this.http.get("http://localhost:9090/salles")
-      .subscribe({
+this.salleService.getAllSalles().subscribe({
         next : data => {
           this.salle = data;
           this.dataSource=new MatTableDataSource(this.salle);

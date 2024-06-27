@@ -2,16 +2,19 @@ package com.DentistFlow.DentistFlow.web;
 
 import com.DentistFlow.DentistFlow.Enum.Sexe;
 import com.DentistFlow.DentistFlow.Enum.TypeRendezVous;
+import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.entities.RendezVous;
 import com.DentistFlow.DentistFlow.repository.RendezVousRepository;
 import com.DentistFlow.DentistFlow.services.RendezVousService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -34,13 +37,14 @@ public class RendezVousController {
     }
 
     @GetMapping(path = "/dentists/{code}/rendezvous")
-    public List<RendezVous> RendezVousByDentist(@RequestParam String code){
+    public List<RendezVous> RendezVousByDentist(@PathVariable String code){
         return rendezVousRepository.findByDentistCode(code);
     }
-    @GetMapping(path = "/patients/{code}/rendezvous")
-    public List<RendezVous> RendezVousByPatient(@RequestParam String id){
+    @GetMapping(path = "/patients/{id}/rendezvous")
+    public List<RendezVous> RendezVousByPatient(@PathVariable String id){
         return rendezVousRepository.findByPatientId(id);
     }
+
 
     @GetMapping(path = "/rendezvous/bytyperendzvous")
     public List<RendezVous> RendezVousByTypeRendezVous(@RequestParam TypeRendezVous typeRendezVous){

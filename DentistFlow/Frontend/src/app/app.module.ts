@@ -34,6 +34,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {MatSort, MatSortModule} from "@angular/material/sort";
     RendezvousComponent,
     SalleComponent,
     LoadAntecedentComponent,
+    PatientDetailsComponent,
   ],
   imports: [
     BrowserModule,

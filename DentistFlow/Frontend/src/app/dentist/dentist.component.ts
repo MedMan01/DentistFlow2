@@ -4,6 +4,10 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {Patient} from "../model/patient.model";
+import {Dentist} from "../model/dentist.model";
+import {Router} from "@angular/router";
+import {DentistsService} from "../services/dentists.service";
 
 @Component({
   selector: 'app-dentist',
@@ -11,17 +15,16 @@ import {MatSort} from "@angular/material/sort";
   styleUrl: './dentist.component.css'
 })
 export class DentistComponent implements OnInit{
-  public dentist: any;
-  public dataSource: any;
+  public dentist!: Array<Dentist>;
+  public dataSource!: MatTableDataSource<Dentist>;
   public displayedColumns:string[] =['id','code','firstName','lastName',]
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
-  constructor(private http: HttpClient) {
+  constructor(private dentistService:DentistsService, private router: Router) {
   }
   ngOnInit() {
-    this.http.get("http://localhost:9090/dentists")
-      .subscribe({
+this.dentistService.getAllDentists().subscribe({
         next : data => {
           this.dentist = data;
           this.dataSource=new MatTableDataSource(this.dentist);

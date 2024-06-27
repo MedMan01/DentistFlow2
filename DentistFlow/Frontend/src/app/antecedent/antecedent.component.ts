@@ -3,6 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {HttpClient} from "@angular/common/http";
 import {MatTableDataSource} from "@angular/material/table";
+import {PatientsService} from "../services/patients.service";
 
 @Component({
   selector: 'app-antecedent',
@@ -11,21 +12,21 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class AntecedentComponent implements  OnInit{
   public antecedent: any;
-  public dataSource: any;
+  public PatientdataSource: any;
   public displayedColumns:string[] =['id','dateCreation','firstname','Description']
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
-  constructor(private http: HttpClient) {
+  constructor(private patientService:PatientsService) {
   }
   ngOnInit() {
-    this.http.get("http://localhost:9090/antecedents")
+    this.patientService.getAllAntecedents()
       .subscribe({
         next : data => {
           this.antecedent = data;
-          this.dataSource=new MatTableDataSource(this.antecedent);
-          this.dataSource.paginator=this.paginator;
-          this.dataSource.sort=this.sort;
+          this.PatientdataSource=new MatTableDataSource(this.antecedent);
+          this.PatientdataSource.paginator=this.paginator;
+          this.PatientdataSource.sort=this.sort;
 
         },
         error: err => {

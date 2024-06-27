@@ -1,0 +1,78 @@
+<div class="container">
+  <mat-card class="patient-details-card">
+    <mat-card-header>
+      <mat-card-title>
+        Antécédents du Patient "{{ patientId }}"
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+    <!-- Flex container to align tables horizontally -->
+    <div class="tables-container">
+
+      <!-- Antecedents Table -->
+      <div class="table-container">
+        <h2>Rendez-vous Réalisés</h2> <!-- Titre pour la table des rendez-vous -->
+
+        <mat-card-content>
+          <mat-table [dataSource]="rendezvoussDataSource" class="mat-elevation-z1">
+
+            <!-- Columns Definitions -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let rendezvous"> {{rendezvous.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let rendezvous"> {{rendezvous.date | date:'short'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="typeRendezVous">
+              <th mat-header-cell *matHeaderCellDef> Type </th>
+              <td mat-cell *matCellDef="let rendezvous"> {{rendezvous.typeRendezVous}} </td>
+            </ng-container>
+
+            <!-- Header Row -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsRendezvous"></tr>
+            <!-- Data Rows -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsRendezvous;"></tr>
+          </mat-table>
+        </mat-card-content>
+
+      </div>
+
+      <!-- RendezVous Table -->
+      <div class="table-container">
+        <h2>Antécédents du Patient</h2> <!-- Titre pour la table des antécédents -->
+
+        <mat-card-content>
+          <mat-table [dataSource]="antecedentsDataSource" class="mat-elevation-z1">
+
+            <!-- Columns Definitions -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let antecedent"> {{antecedent.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateCreation">
+              <th mat-header-cell *matHeaderCellDef> Date de Création </th>
+              <td mat-cell *matCellDef="let antecedent"> {{antecedent.dateCreation | date:'short'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let antecedent"> {{antecedent.description}} </td>
+            </ng-container>
+
+            <!-- Header Row -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- Data Rows -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </mat-table>
+        </mat-card-content>
+      </div>
+
+    </div>
+  </mat-card>
+</div>

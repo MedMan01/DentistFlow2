@@ -3,6 +3,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {HttpClient} from "@angular/common/http";
 import {MatTableDataSource} from "@angular/material/table";
+import {Salle} from "../model/salle.model";
+import {Rendezvous} from "../model/rendezvous.model";
+import {DentistsService} from "../services/dentists.service";
 
 @Component({
   selector: 'app-rendezvous',
@@ -10,17 +13,16 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrl: './rendezvous.component.css'
 })
 export class RendezvousComponent implements OnInit{
-  public rendezvous: any;
-  public dataSource: any;
+  public rendezvous!: Array<Rendezvous>;
+  public dataSource!: MatTableDataSource<Rendezvous>;
   public displayedColumns:string[] =['id','date','typeRendezVous','lastnameD','lastnameP']
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
-  constructor(private http: HttpClient) {
+  constructor(private dentistService:DentistsService) {
   }
   ngOnInit() {
-    this.http.get("http://localhost:9090/rendezVous")
-      .subscribe({
+this.dentistService.getAllRendezVous().subscribe({
         next : data => {
           this.rendezvous = data;
           this.dataSource=new MatTableDataSource(this.rendezvous);

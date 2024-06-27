@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card>
+  <mat-card class="patient-card">
     <mat-card-header>
       <mat-card-title>
         Patient
@@ -7,7 +7,6 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
-
       <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z1">
 
         <!-- Column definitions -->
@@ -20,6 +19,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName </th>
           <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
         </ng-container>
+
         <ng-container matColumnDef="lastName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName </th>
           <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
@@ -45,13 +45,21 @@
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
 
+        <!-- Button column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="patientAntecedents(element)">Antecedent</button>
+          </td>
+        </ng-container>
+
         <!-- Header row -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
         <!-- Data rows -->
         <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
       </mat-table>
-      <mat-paginator [pageSizeOptions]="[5, 10,20 ,30,100]"
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 100]"
                      showFirstLastButtons
                      aria-label="Select page of periodic elements">
       </mat-paginator>

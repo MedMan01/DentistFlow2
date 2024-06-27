@@ -20,6 +20,7 @@ public class Dentist {
     private String firstName;
     private String lastName;
 
+
    /* @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="DENTIST_SALLE",
             joinColumns = {

@@ -8,7 +8,7 @@
     <mat-divider></mat-divider>
     <mat-card-content>
 
-      <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z1">
+      <mat-table matSort [dataSource]="PatientdataSource" class="mat-elevation-z1">
 
         <!-- Column definitions -->
         <ng-container matColumnDef="id">
@@ -29,6 +29,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
           <td mat-cell *matCellDef="let element"> {{element.description}} </td>
         </ng-container>
+
 
 
         <!-- Header row -->

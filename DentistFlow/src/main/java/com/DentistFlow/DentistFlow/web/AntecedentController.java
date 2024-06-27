@@ -66,6 +66,11 @@ public class AntecedentController {
     public Antecedent updateAntecedents(String description,String patientId,@PathVariable Long id){
         return antecedentService.updateAntecedent(description,patientId,id);
     }
+    @GetMapping(value = "/antecedentFile/{antecedentId}", produces = MediaType.APPLICATION_PDF_VALUE)
+    public byte[] getPaymentFile(@PathVariable Long antecedentId) throws IOException {
+
+        return  antecedentService.getPaymentFile(antecedentId);
+    }
 
 
     @DeleteMapping("/antecedents/{id}")
