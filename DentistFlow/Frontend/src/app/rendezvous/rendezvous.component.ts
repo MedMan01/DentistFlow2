@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Salle} from "../model/salle.model";
 import {Rendezvous} from "../model/rendezvous.model";
 import {DentistsService} from "../services/dentists.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-rendezvous',
@@ -15,11 +16,11 @@ import {DentistsService} from "../services/dentists.service";
 export class RendezvousComponent implements OnInit{
   public rendezvous!: Array<Rendezvous>;
   public dataSource!: MatTableDataSource<Rendezvous>;
-  public displayedColumns:string[] =['id','date','typeRendezVous','lastnameD','lastnameP']
+  public displayedColumns:string[] =['id','date','typeRendezVous','lastnameD','lastnameP', 'details']
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
-  constructor(private dentistService:DentistsService) {
+  constructor(private dentistService:DentistsService, private router: Router) {
   }
   ngOnInit() {
 this.dentistService.getAllRendezVous().subscribe({
@@ -33,7 +34,10 @@ this.dentistService.getAllRendezVous().subscribe({
         error: err => {
           console.log(err)
         }
-      })
+      });
   }
 
+  rendezVousdetail(rendezvous: Rendezvous) {
+    this.router.navigateByUrl(`/admin/rendezVous-details/${rendezvous.id}`);
+  }
 }

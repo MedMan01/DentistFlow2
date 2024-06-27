@@ -28,7 +28,12 @@ export class PaymentsService {
         catchError(this.handleError<Array<Payment>>('getAllPayments', []))
       );
   }
-
+  public getRendezVousPayment(id: string): Observable<Array<Payment>> {
+    return this.http.get<Array<Payment>>(`${this.backendUrl}/rendezvous/${id}/payment`)
+      .pipe(
+        catchError(this.handleError<Array<Payment>>('getRendezVousPayment', []))
+      );
+  }
 
 
 

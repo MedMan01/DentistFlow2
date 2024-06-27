@@ -3,6 +3,7 @@ package com.DentistFlow.DentistFlow.web;
 import com.DentistFlow.DentistFlow.Enum.PaymentStatus;
 import com.DentistFlow.DentistFlow.Enum.PaymentType;
 import com.DentistFlow.DentistFlow.entities.Payment;
+import com.DentistFlow.DentistFlow.entities.RendezVous;
 import com.DentistFlow.DentistFlow.repository.PaymentRepository;
 import com.DentistFlow.DentistFlow.repository.RendezVousRepository;
 import com.DentistFlow.DentistFlow.services.PaymentService;
@@ -30,11 +31,10 @@ public class PaymentController {
         return paymentRepository.findAll();
     }
 
-    @GetMapping(path = "/rendezvous/{code}/payments")
-    public List<Payment> PaymetsByStudent(@PathVariable Long id){
+    @GetMapping(path = "/rendezvous/{id}/payment")
+    public List<Payment> PaymentByRendezvous(@PathVariable Long id){
         return paymentRepository.findByRendezVousId(id);
     }
-
     @GetMapping(path = "/payments/byStatus")
     public List<Payment> PaymentsByStatus(@RequestParam PaymentStatus status){
         return paymentRepository.findByStatus(status);

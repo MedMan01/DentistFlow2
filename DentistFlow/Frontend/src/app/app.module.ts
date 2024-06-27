@@ -35,6 +35,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
+import { DentistDetailsComponent } from './dentist-details/dentist-details.component';
+import { RendezvousDetailsComponent } from './rendezvous-details/rendezvous-details.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
     SalleComponent,
     LoadAntecedentComponent,
     PatientDetailsComponent,
+    DentistDetailsComponent,
+    RendezvousDetailsComponent,
   ],
   imports: [
     BrowserModule,

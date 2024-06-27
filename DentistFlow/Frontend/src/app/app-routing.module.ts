@@ -16,6 +16,8 @@
   import {LoadAntecedentComponent} from "./load-antecedent/load-antecedent.component";
   import {AuthorizationGuard} from "./guards/authorisation.guard";
   import {PatientDetailsComponent} from "./patient-details/patient-details.component";
+  import {DentistDetailsComponent} from "./dentist-details/dentist-details.component";
+  import {RendezvousDetailsComponent} from "./rendezvous-details/rendezvous-details.component";
 
   const routes: Routes = [
     {path:"", component:LoginComponent},
@@ -39,6 +41,8 @@
         {path:"patients", component:PatientComponent},
         {path:"payments", component:PaymentsComponent},
         {path:"patient-details/:id", component:PatientDetailsComponent},
+        {path:"dentist-details/:code", component:DentistDetailsComponent},
+        {path:"rendezVous-details/:id", component:RendezvousDetailsComponent},
         {path:"rendezvous", component:RendezvousComponent},
         {path:"salles",component:SalleComponent}
 

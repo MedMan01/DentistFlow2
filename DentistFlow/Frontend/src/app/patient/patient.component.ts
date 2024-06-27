@@ -36,8 +36,8 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  patientAntecedents(patient: Patient) {
-    this.router.navigateByUrl(`/admin/patient-details/${patient.id}`);
-  }
+    patientAntecedents(patient: Patient) {
+      this.router.navigateByUrl(`/admin/patient-details/${patient.id}`);
+    }
 
 }

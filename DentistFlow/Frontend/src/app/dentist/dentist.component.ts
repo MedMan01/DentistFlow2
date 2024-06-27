@@ -17,7 +17,7 @@ import {DentistsService} from "../services/dentists.service";
 export class DentistComponent implements OnInit{
   public dentist!: Array<Dentist>;
   public dataSource!: MatTableDataSource<Dentist>;
-  public displayedColumns:string[] =['id','code','firstName','lastName',]
+  public displayedColumns:string[] =['id','code','firstName','lastName','rendezvous']
 
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! :MatSort;
@@ -38,4 +38,7 @@ this.dentistService.getAllDentists().subscribe({
       })
   }
 
+  dentistDetail(dentist: Dentist) {
+    this.router.navigateByUrl(`/admin/dentist-details/${dentist.code}`);
+  }
 }

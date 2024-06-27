@@ -39,6 +39,12 @@ export class DentistsService {
         catchError(this.handleError<Array<Rendezvous>>('getAllRendezVous', []))
       );
   }
+  public getDentistRendezVous(code: string): Observable<Array<Rendezvous>> {
+    return this.http.get<Array<Rendezvous>>(`${this.backendUrl}/dentists/${code}/rendezvous`)
+      .pipe(
+        catchError(this.handleError<Array<Rendezvous>>('getDentistRendezVous', []))
+      );
+  }
 
 
 
