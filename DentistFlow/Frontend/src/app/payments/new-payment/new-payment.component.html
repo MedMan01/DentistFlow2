@@ -1,0 +1,53 @@
+<div class="container">
+  <mat-card [formGroup]="paymentFormGroup" class="payment-form">
+    <mat-card-header>
+      <mat-card-title>New Payment</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Payment date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input matInput formControlName="amount" type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          @for (t of paymentTypes; track t){
+            <mat-option value="t">{{ t }}</mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>RendezVous Id</mat-label>
+        <input matInput formControlName="rendezvousId" [value]="rendezvousId" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>file</mat-label>
+        <button type="button" mat-icon-button matPrefix (click)="f_input.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input matInput readonly formControlName="fileName">
+        <input type="file" hidden #f_input (change)="selectfile($event)" accept="application/pdf">
+      </mat-form-field>
+
+
+      <!-- Custom styled file input field -->
+     <!-- <div class="file-input-wrapper">
+        <label for="file">Upload File</label>
+        <input id="file" type="file" (change)="onFileSelected($event)">
+      </div>-->
+    </mat-card-content>
+    <mat-card-actions></mat-card-actions>
+  </mat-card>
+</div>
+

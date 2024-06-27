@@ -37,6 +37,10 @@ import {MatSort, MatSortModule} from "@angular/material/sort";
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { DentistDetailsComponent } from './dentist-details/dentist-details.component';
 import { RendezvousDetailsComponent } from './rendezvous-details/rendezvous-details.component';
+import { NewPaymentComponent } from './payments/new-payment/new-payment.component';
+import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -57,6 +61,7 @@ import { RendezvousDetailsComponent } from './rendezvous-details/rendezvous-deta
     PatientDetailsComponent,
     DentistDetailsComponent,
     RendezvousDetailsComponent,
+    NewPaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,10 @@ import { RendezvousDetailsComponent } from './rendezvous-details/rendezvous-deta
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [
     provideAnimationsAsync(),

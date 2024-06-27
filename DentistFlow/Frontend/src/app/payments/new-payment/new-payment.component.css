@@ -1,0 +1,22 @@
+.file-input-wrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-input-wrapper label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.file-input-wrapper input[type="file"] {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
+mat-form-field{
+  display: block;
+}
+.payment-form{
+  width: 500px;
+}
