@@ -35,6 +35,13 @@ export class PaymentsService {
       );
   }
 
+  public savePayment(formData: any): Observable<Payment> {
+    return this.http.post<Payment>(`${this.backendUrl}/payments`,formData)
+      .pipe(
+        catchError(this.handleError<Payment>('savePayment' ))
+      );
+  }
+
 
 
 

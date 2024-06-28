@@ -2,6 +2,7 @@ package com.DentistFlow.DentistFlow.services;
 
 import com.DentistFlow.DentistFlow.Enum.PaymentStatus;
 import com.DentistFlow.DentistFlow.Enum.PaymentType;
+import com.DentistFlow.DentistFlow.dtos.NewPaymentDTO;
 import com.DentistFlow.DentistFlow.entities.Payment;
 import com.DentistFlow.DentistFlow.entities.RendezVous;
 import com.DentistFlow.DentistFlow.repository.PaymentRepository;
@@ -27,8 +28,7 @@ public class PaymentService {
         this.rendezVousRepository = rendezVousRepository;
         this.paymentRepository = paymentRepository;
     }
-    public Payment savePayment(MultipartFile file, LocalDate date, double amount,
-                               PaymentType type, Long rendezvousId) throws IOException {
+    public Payment savePayment(MultipartFile file, NewPaymentDTO newPaymentDTO) throws IOException {
         //creation du dossier
         Path folderPath= Paths.get(System.getProperty("user.home"),"emsiData", "payments");
         if (!Files.exists(folderPath)){
@@ -38,10 +38,10 @@ public class PaymentService {
         String fileName = UUID.randomUUID().toString();
         Path filePath= Paths.get(System.getProperty("user.home"),"emsiData", "payments", fileName+".pdf");
         Files.copy(file.getInputStream(), filePath);
-        RendezVous rendezVous = rendezVousRepository.findById(rendezvousId).get();
+        RendezVous rendezVous = rendezVousRepository.findById(newPaymentDTO.getRendezvousId()).get();
         Payment payment=Payment.builder()
-                .date(date).type(type).rendezVous(rendezVous)
-                .amount(amount)
+                .date(newPaymentDTO.getDate()).type(newPaymentDTO.getType()).rendezVous(rendezVous)
+                .amount(newPaymentDTO.getAmount())
                 .file(filePath.toUri().toString())
                 .status(PaymentStatus.CREATED)
                 .build();

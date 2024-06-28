@@ -2,12 +2,14 @@ package com.DentistFlow.DentistFlow.web;
 
 import com.DentistFlow.DentistFlow.Enum.PaymentStatus;
 import com.DentistFlow.DentistFlow.Enum.PaymentType;
+import com.DentistFlow.DentistFlow.dtos.NewPaymentDTO;
 import com.DentistFlow.DentistFlow.entities.Payment;
 import com.DentistFlow.DentistFlow.entities.RendezVous;
 import com.DentistFlow.DentistFlow.repository.PaymentRepository;
 import com.DentistFlow.DentistFlow.repository.RendezVousRepository;
 import com.DentistFlow.DentistFlow.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,10 +68,23 @@ public class PaymentController {
     }
 
     @PostMapping(path= "/payments", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Payment savePayment(@RequestParam MultipartFile file, LocalDate date, double amount,
-                               PaymentType type, Long rendezvousId) throws IOException {
-        return paymentService.savePayment(file,date, amount, type, rendezvousId);
+    public ResponseEntity<?> savePayment( NewPaymentDTO newPaymentDTO, @RequestParam("file") MultipartFile file) {
+        try {
+            // Log pour vérifier les données reçues
+            System.out.println("Received payment request: " + newPaymentDTO.toString());
+
+            Payment savedPayment = paymentService.savePayment(file, newPaymentDTO);
+            return ResponseEntity.ok(savedPayment);
+        } catch (Exception e) {
+            // Log de l'exception pour le débogage
+            e.printStackTrace();
+            // Retourner une réponse d'erreur avec un message significatif
+            return ResponseEntity.badRequest().body("Failed to save payment: " + e.getMessage());
+        }
     }
+
+
+
 
     @GetMapping(value = "/paymentFile/{paymentId}", produces = MediaType.APPLICATION_PDF_VALUE)
     public byte[] getPaymentFile(@PathVariable Long paymentId) throws IOException {

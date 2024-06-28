@@ -18,11 +18,10 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
-        <mat-select formControlName="type">
-          @for (t of paymentTypes; track t){
-            <mat-option value="t">{{ t }}</mat-option>
-
-          }
+        <mat-select formControlName="type" required>
+          <mat-option *ngFor="let t of paymentTypes" [value]="t">
+            {{ t }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -47,7 +46,9 @@
         <input id="file" type="file" (change)="onFileSelected($event)">
       </div>-->
     </mat-card-content>
-    <mat-card-actions></mat-card-actions>
+    <mat-card-actions>
+      <button mat-raised-button (click)="savePayment()" color="primary">Save Payment</button>
+    </mat-card-actions>
   </mat-card>
 </div>
 
