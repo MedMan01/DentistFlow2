@@ -41,4 +41,9 @@ this.dentistService.getAllDentists().subscribe({
   dentistDetail(dentist: Dentist) {
     this.router.navigateByUrl(`/admin/dentist-details/${dentist.code}`);
   }
+
+  newDentist() {
+    this.router.navigateByUrl(`/admin/new-dentist`);
+
+  }
 }

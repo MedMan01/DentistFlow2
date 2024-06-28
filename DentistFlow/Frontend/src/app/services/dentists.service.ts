@@ -47,7 +47,13 @@ export class DentistsService {
   }
 
 
-
+  public saveDentist(dentistData: any): Observable<Dentist> {
+    return this.http.post<Dentist>(`${this.backendUrl}/dentists`, dentistData, {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      catchError(this.handleError<Dentist>('saveDentist' ))
+    );
+  }
 
 
 

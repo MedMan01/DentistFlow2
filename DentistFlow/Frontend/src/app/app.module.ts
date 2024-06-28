@@ -44,6 +44,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { NewAntecedentComponent } from './antecedent/new-antecedent/new-antecedent.component';
 import { NewPatientComponent } from './patient/new-patient/new-patient.component';
 import { NewDentistComponent } from './dentist/new-dentist/new-dentist.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { NewDentistComponent } from './dentist/new-dentist/new-dentist.component
     MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    PdfViewerModule
   ],
   providers: [
     provideAnimationsAsync(),

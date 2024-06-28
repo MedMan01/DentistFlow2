@@ -1,6 +1,8 @@
 package com.DentistFlow.DentistFlow.services;
 
+import com.DentistFlow.DentistFlow.dtos.NewPatientDTO;
 import com.DentistFlow.DentistFlow.entities.Dentist;
+import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.repository.DentistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,15 +24,15 @@ public class DentistService {
         this.dentistRepository = dentistRepository;
     }
 
-    public Dentist saveDentist(String code, String firstName, String lastName) throws IOException {
+    public Dentist saveDentist(Dentist dentist) throws IOException {
 
-        Dentist payment=Dentist.builder()
+        Dentist dentistV=Dentist.builder()
                 .id(UUID.randomUUID().toString())
-                .code(code)
-                .firstName(firstName)
-                .lastName(lastName)
+                .code(dentist.getCode())
+                .firstName(dentist.getFirstName())
+                .lastName(dentist.getLastName())
                 .build();
-        return dentistRepository.save(payment);
+        return dentistRepository.save(dentistV);
     }
 
     public Dentist updateDentist(String code, String firstName, String lastName, String id) {
