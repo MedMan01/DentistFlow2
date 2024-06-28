@@ -19,6 +19,7 @@
   import {DentistDetailsComponent} from "./dentist-details/dentist-details.component";
   import {RendezvousDetailsComponent} from "./rendezvous-details/rendezvous-details.component";
   import {NewPaymentComponent} from "./payments/new-payment/new-payment.component";
+  import {NewAntecedentComponent} from "./antecedent/new-antecedent/new-antecedent.component";
 
   const routes: Routes = [
     {path:"", component:LoginComponent},
@@ -45,6 +46,7 @@
         {path:"dentist-details/:code", component:DentistDetailsComponent},
         {path:"rendezVous-details/:id", component:RendezvousDetailsComponent},
         {path:"new-payment/:rendezvousId", component:NewPaymentComponent},
+        {path:"new-antecedent/:patientId", component:NewAntecedentComponent},
         {path:"rendezvous", component:RendezvousComponent},
         {path:"salles",component:SalleComponent}
 

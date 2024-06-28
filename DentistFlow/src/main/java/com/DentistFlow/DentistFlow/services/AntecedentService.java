@@ -1,5 +1,7 @@
 package com.DentistFlow.DentistFlow.services;
 
+import com.DentistFlow.DentistFlow.dtos.NewAntecedentDTO;
+import com.DentistFlow.DentistFlow.dtos.NewPaymentDTO;
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.entities.Payment;
@@ -26,7 +28,7 @@ public class AntecedentService {
         this.patientRepository = patientRepository;
     }
 
-    public Antecedent saveAntecedent(MultipartFile file, String description, String patientId) throws IOException {
+    public Antecedent saveAntecedent(MultipartFile file, NewAntecedentDTO newAntecedentDTO) throws IOException {
         // Create the folder if it doesn't exist
         Path folderPath = Paths.get(System.getProperty("user.home"), "Dentist", "antecedents");
         if (!Files.exists(folderPath)) {
@@ -38,13 +40,13 @@ public class AntecedentService {
         Files.copy(file.getInputStream(), filePath);
 
         // Find the patient
-        Patient patient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new IllegalArgumentException("Patient not found"));
+        Patient patient = patientRepository.findById(newAntecedentDTO.getPatientId()).get();
 
         // Create and save the antecedent
         Antecedent antecedent = Antecedent.builder()
                 .dateCreation(LocalDate.now())
-                .description(description)
+                .description(newAntecedentDTO.getDescription())
+                .file(filePath.toUri().toString())
                 .patient(patient)
                 .build();
         return antecedentRepository.save(antecedent);

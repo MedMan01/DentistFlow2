@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PatientsService } from '../services/patients.service';
 import { Antecedent } from '../model/patient.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -21,7 +21,8 @@ export class PatientDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private patientService: PatientsService
+    private patientService: PatientsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +50,10 @@ export class PatientDetailsComponent implements OnInit {
         console.error('Error fetching patient rendezvous', err);
       }
     });
+  }
+
+  newAntecedent() {
+    this.router.navigateByUrl(`/admin/new-antecedent/${this.patientId}`)
+
   }
 }

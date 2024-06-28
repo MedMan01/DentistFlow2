@@ -1,8 +1,11 @@
 package com.DentistFlow.DentistFlow.web;
 
 import com.DentistFlow.DentistFlow.Enum.Sexe;
+import com.DentistFlow.DentistFlow.dtos.NewAntecedentDTO;
+import com.DentistFlow.DentistFlow.dtos.NewPaymentDTO;
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
+import com.DentistFlow.DentistFlow.entities.Payment;
 import com.DentistFlow.DentistFlow.repository.AntecedentRepository;
 import com.DentistFlow.DentistFlow.repository.PatientRepository;
 import com.DentistFlow.DentistFlow.services.AntecedentService;
@@ -58,9 +61,22 @@ public class AntecedentController {
     }
 
     @PostMapping(path= "/antecedents", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Antecedent saveAntecedent(@RequestParam MultipartFile file, String description, String patientId) throws IOException {
-        return antecedentService.saveAntecedent(file, description, patientId);
+    public ResponseEntity<?> saveAntecedent(NewAntecedentDTO newAntecedentDTO, @RequestParam("file") MultipartFile file) {
+        try {
+            // Log pour vérifier les données reçues
+            System.out.println("Received antecedent request: " + newAntecedentDTO.toString());
+
+            Antecedent saveAntecedent = antecedentService.saveAntecedent(file, newAntecedentDTO);
+            return ResponseEntity.ok(saveAntecedent);
+        } catch (Exception e) {
+            // Log de l'exception pour le débogage
+            e.printStackTrace();
+            // Retourner une réponse d'erreur avec un message significatif
+            return ResponseEntity.badRequest().body("Failed to save antecedent: " + e.getMessage());
+        }
     }
+
+
 
     @PutMapping("/antecedents/{id}")
     public Antecedent updateAntecedents(String description,String patientId,@PathVariable Long id){

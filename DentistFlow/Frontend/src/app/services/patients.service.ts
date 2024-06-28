@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Antecedent, Patient } from '../model/patient.model';
 import { environment } from '../../environments/environment';
 import {Rendezvous} from "../model/rendezvous.model";
+import {Payment} from "../model/payment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,13 @@ export class PatientsService {
     return this.http.get<Array<Rendezvous>>(`${this.backendUrl}/patients/${id}/rendezvous`)
       .pipe(
         catchError(this.handleError<Array<Rendezvous>>('getPatientRendezVous', []))
+      );
+  }
+
+  public saveAntecedent(formData: any): Observable<Antecedent> {
+    return this.http.post<Antecedent>(`${this.backendUrl}/antecedents`,formData)
+      .pipe(
+        catchError(this.handleError<Antecedent>('saveAntecedent' ))
       );
   }
 
