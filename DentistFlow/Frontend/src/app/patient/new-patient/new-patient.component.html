@@ -43,6 +43,9 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="savePatient()" color="primary">Save Patient</button>
+      @if(showProgress){
+        <mat-spinner></mat-spinner>
+      }
     </mat-card-actions>
   </mat-card>
 </div>

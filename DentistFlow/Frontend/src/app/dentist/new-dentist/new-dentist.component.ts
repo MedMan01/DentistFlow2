@@ -11,6 +11,7 @@ import {DentistsService} from "../../services/dentists.service";
 })
 export class NewDentistComponent {
   dentistFormGroup!: FormGroup;
+  showProgress: boolean=false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,11 +29,12 @@ export class NewDentistComponent {
   }
 
   saveDentist(): void {
+
     if (this.dentistFormGroup.invalid) {
       alert('Please fill in all required fields.');
       return;
     }
-
+  this.showProgress=true;
     // Récupérer les valeurs du formulaire
     const patientData = this.dentistFormGroup.value;
 
@@ -42,6 +44,7 @@ export class NewDentistComponent {
     // Appeler le service pour enregistrer le patient
     this.dentistService.saveDentist(patientData).subscribe({
       next: () => {
+        this.showProgress=false;
         alert('Dentist saved successfully!');
         this.dentistFormGroup.reset();
       },

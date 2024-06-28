@@ -10,6 +10,7 @@ import { Sexe } from '../../model/patient.model';
 })
 export class NewPatientComponent {
   patientFormGroup!: FormGroup;
+  showProgress: boolean=false;
   sexe: string[] = [];
 
   constructor(
@@ -32,6 +33,7 @@ export class NewPatientComponent {
   }
 
   savePatient(): void {
+    this.showProgress=true;
     if (this.patientFormGroup.invalid) {
       alert('Please fill in all required fields.');
       return;
@@ -46,6 +48,7 @@ export class NewPatientComponent {
     // Appeler le service pour enregistrer le patient
     this.patientService.savePatient(patientData).subscribe({
       next: () => {
+        this.showProgress=false;
         alert('Patient saved successfully!');
         this.patientFormGroup.reset();
       },

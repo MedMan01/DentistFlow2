@@ -13,6 +13,7 @@ export class NewAntecedentComponent {
   patientId!: string;
   selectedFile: File | null = null;
   pdfFileUrl!: string;
+  showProgress: boolean=false;
 
   constructor(
     private fb: FormBuilder,
@@ -54,6 +55,8 @@ export class NewAntecedentComponent {
       alert('Please fill in all required fields.');
       return;
     }
+    this.showProgress=true;
+
 
     const formData = new FormData();
     formData.append('description', this.antecedentFormGroup.value.description); // Corrected 'amount' to 'description'
@@ -71,6 +74,8 @@ export class NewAntecedentComponent {
     // Call the service to save the antecedent
     this.patientService.saveAntecedent(formData).subscribe({
       next: () => {
+        this.showProgress=false;
+
         alert('Antecedent saved successfully!');
         this.antecedentFormGroup.reset();
         this.selectedFile = null;
@@ -80,5 +85,10 @@ export class NewAntecedentComponent {
         alert('Failed to save antecedent. Please check the data and try again.');
       }
     });
+
   }
+  afterLoadComplete(event: any) {
+    console.log(event);
+  }
+
 }

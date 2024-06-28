@@ -45,6 +45,7 @@ import { NewAntecedentComponent } from './antecedent/new-antecedent/new-antecede
 import { NewPatientComponent } from './patient/new-patient/new-patient.component';
 import { NewDentistComponent } from './dentist/new-dentist/new-dentist.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     provideAnimationsAsync(),

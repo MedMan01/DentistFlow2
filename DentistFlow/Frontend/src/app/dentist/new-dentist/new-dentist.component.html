@@ -22,6 +22,9 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="saveDentist()" color="primary">Save Dentist</button>
+      @if(showProgress){
+        <mat-spinner></mat-spinner>
+      }
     </mat-card-actions>
   </mat-card>
 </div>

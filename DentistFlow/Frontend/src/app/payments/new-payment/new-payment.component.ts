@@ -15,6 +15,7 @@ export class NewPaymentComponent implements OnInit {
   selectedFile: File | null = null;
   paymentTypes: string[] = [];
   pdfFileUrl!: string;
+  showProgress: boolean=false;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +58,7 @@ export class NewPaymentComponent implements OnInit {
 
   // Méthode pour sauvegarder le paiement
   savePayment(): void {
+    this.showProgress=true;
     if (this.paymentFormGroup.invalid) {
       alert('Please fill in all required fields.');
       return;
@@ -84,8 +86,10 @@ export class NewPaymentComponent implements OnInit {
 
     this.paymentService.savePayment(formData).subscribe({
       next: () => {
+        this.showProgress=false;
         alert('Payment Saved successfully!');
         // Réinitialiser le formulaire après succès
+
         this.paymentFormGroup.reset();
         this.selectedFile = null;
       },
@@ -94,5 +98,9 @@ export class NewPaymentComponent implements OnInit {
         alert('Failed to save payment. Please check the data and try again.');
       }
     });
+  }
+
+  afterLoadComplete(event: any) {
+    console.log(event);
   }
 }
