@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Antecedent, Patient } from '../model/patient.model';
 import { environment } from '../../environments/environment';
-import {Rendezvous} from "../model/rendezvous.model";
-import {Payment} from "../model/payment.model";
+import { Rendezvous } from "../model/rendezvous.model";
+import { Payment } from "../model/payment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,6 @@ export class PatientsService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Récupère tous les antécédents
-   * @returns Observable d'un tableau d'Antecedents
-   */
   public getAllAntecedents(): Observable<Array<Antecedent>> {
     return this.http.get<Array<Antecedent>>(`${this.backendUrl}/antecedents`)
       .pipe(
@@ -27,10 +23,6 @@ export class PatientsService {
       );
   }
 
-  /**
-   * Récupère tous les patients
-   * @returns Observable d'un tableau de Patients
-   */
   public getAllPatients(): Observable<Array<Patient>> {
     return this.http.get<Array<Patient>>(`${this.backendUrl}/patients`)
       .pipe(
@@ -38,17 +30,13 @@ export class PatientsService {
       );
   }
 
-  /**
-   * Récupère les antécédents d'un patient par son ID
-   * @param id ID du patient
-   * @returns Observable d'un tableau d'Antecedents
-   */
   public getPatientAntecedents(id: string): Observable<Array<Antecedent>> {
     return this.http.get<Array<Antecedent>>(`${this.backendUrl}/patients/${id}/antecedents`)
       .pipe(
         catchError(this.handleError<Array<Antecedent>>('getPatientAntecedents', []))
       );
   }
+
   public getPatientRendezVous(id: string): Observable<Array<Rendezvous>> {
     return this.http.get<Array<Rendezvous>>(`${this.backendUrl}/patients/${id}/rendezvous`)
       .pipe(
@@ -57,25 +45,23 @@ export class PatientsService {
   }
 
   public saveAntecedent(formData: any): Observable<Antecedent> {
-    return this.http.post<Antecedent>(`${this.backendUrl}/antecedents`,formData)
+    return this.http.post<Antecedent>(`${this.backendUrl}/antecedents`, formData)
       .pipe(
         catchError(this.handleError<Antecedent>('saveAntecedent' ))
       );
   }
 
+  public savePatient(patientData: any): Observable<Patient> {
+    return this.http.post<Patient>(`${this.backendUrl}/patients`, patientData, {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      catchError(this.handleError<Patient>('savePatient' ))
+    );
+  }
 
-
-
-
-
-  /**
-   * Gestion des erreurs HTTP
-   * @param operation - nom de l'opération qui a échoué
-   * @param result - valeur facultative à renvoyer comme résultat observable
-   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`); // log to console instead
+      console.error(`${operation} failed: ${error.message}`);
 
       // Renvoyer un résultat vide pour que l'application continue à fonctionner.
       return new Observable<T>(subscriber => {

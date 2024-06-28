@@ -1,6 +1,8 @@
 package com.DentistFlow.DentistFlow.web;
 
 import com.DentistFlow.DentistFlow.Enum.Sexe;
+import com.DentistFlow.DentistFlow.dtos.NewAntecedentDTO;
+import com.DentistFlow.DentistFlow.dtos.NewPatientDTO;
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.repository.PatientRepository;
@@ -47,10 +49,22 @@ public class PatientController {
         return patientRepository.findByEmail(email);
     }
 
-    @PostMapping(path= "/patients", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Patient savePatient(@RequestParam String firstName,@RequestParam String lastName,@RequestParam Sexe sexe,@RequestParam int age,@RequestParam  String tel,@RequestParam String email) throws IOException {
-        return patientService.savePatient(firstName, lastName, sexe, age, tel, email);
+    @PostMapping(path = "/patients", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> savePatient(@RequestBody NewPatientDTO newPatientDTO) {
+        try {
+            // Log pour vérifier les données reçues
+            System.out.println("Received patient request: " + newPatientDTO.toString());
+
+            Patient savePatient = patientService.savePatient(newPatientDTO);
+            return ResponseEntity.ok(savePatient);
+        } catch (Exception e) {
+            // Log de l'exception pour le débogage
+            e.printStackTrace();
+            // Retourner une réponse d'erreur avec un message significatif
+            return ResponseEntity.badRequest().body("Failed to save patient: " + e.getMessage());
+        }
     }
+
 
     @PutMapping("/patients/{id}")
     public Patient updatePatients(@RequestParam String firstName,@RequestParam String lastName,@RequestParam Sexe sexe,@RequestParam int age,@RequestParam String tel,@RequestParam String email ,@PathVariable String id){

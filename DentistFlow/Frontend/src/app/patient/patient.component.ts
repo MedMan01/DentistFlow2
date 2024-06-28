@@ -40,4 +40,7 @@ export class PatientComponent implements OnInit {
       this.router.navigateByUrl(`/admin/patient-details/${patient.id}`);
     }
 
+  newPatient() {
+    this.router.navigateByUrl(`/admin/new-patient`);
+  }
 }

@@ -1,6 +1,8 @@
 package com.DentistFlow.DentistFlow.services;
 
 import com.DentistFlow.DentistFlow.Enum.Sexe;
+import com.DentistFlow.DentistFlow.dtos.NewAntecedentDTO;
+import com.DentistFlow.DentistFlow.dtos.NewPatientDTO;
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.repository.PatientRepository;
@@ -24,18 +26,18 @@ public class PatientService {
     public PatientService(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
-    public Patient savePatient(String firstName, String lastName, Sexe sexe, int age, String tel, String email) throws IOException {
+    public Patient savePatient(NewPatientDTO newPatientDTO) throws IOException {
 
 
-        // Create and save the antecedent
+        // Create and save the patient
         Patient patient = Patient.builder()
                 .id(UUID.randomUUID().toString())
-                .firstName(firstName)
-                .lastName(lastName)
-                .sexe(sexe)
-                .age(age)
-                .telephone(tel)
-                .email(email)
+                .firstName(newPatientDTO.getFirstName())
+                .lastName(newPatientDTO.getLastName())
+                .sexe(newPatientDTO.getSexe())
+                .age(newPatientDTO.getAge())
+                .telephone(newPatientDTO.getTelephone())
+                .email(newPatientDTO.getEmail())
                 .build();
         return patientRepository.save(patient);
     }

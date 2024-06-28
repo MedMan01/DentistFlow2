@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-card [formGroup]="patientFormGroup" class="payment-form">
+    <mat-card-header>
+      <mat-card-title>New Patient</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>first Name: </mat-label>
+        <input matInput formControlName="firstName" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name:</mat-label>
+        <input matInput formControlName="lastName" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sexe</mat-label>
+        <mat-select formControlName="sexe" required>
+          <mat-option *ngFor="let s of sexe" [value]="s">
+            {{ s }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>age:</mat-label>
+        <input matInput formControlName="age" type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>telephone:</mat-label>
+        <input matInput formControlName="telephone" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>email: </mat-label>
+        <input matInput formControlName="email" type="email">
+      </mat-form-field>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="savePatient()" color="primary">Save Patient</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

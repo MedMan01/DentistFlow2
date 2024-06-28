@@ -42,6 +42,8 @@ import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { NewAntecedentComponent } from './antecedent/new-antecedent/new-antecedent.component';
+import { NewPatientComponent } from './patient/new-patient/new-patient.component';
+import { NewDentistComponent } from './dentist/new-dentist/new-dentist.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { NewAntecedentComponent } from './antecedent/new-antecedent/new-antecede
     RendezvousDetailsComponent,
     NewPaymentComponent,
     NewAntecedentComponent,
+    NewPatientComponent,
+    NewDentistComponent,
   ],
   imports: [
     BrowserModule,
