@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { PaymentsService } from '../services/payments.service';
 import { Payment } from '../model/payment.model';
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-rendezvous-details',
@@ -17,7 +18,8 @@ export class RendezvousDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentsService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +37,9 @@ export class RendezvousDetailsComponent implements OnInit {
 
   newPayment() {
     this.router.navigateByUrl(`/admin/new-payment/${this.rendezVousId}`)
+  }
+
+  editPayment(paymentId: number) {
+    this.router.navigateByUrl(`/admin/edit-payment/${paymentId}`);
   }
 }

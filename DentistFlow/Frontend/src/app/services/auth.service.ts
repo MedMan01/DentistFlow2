@@ -7,8 +7,8 @@ import {Router} from "@angular/router";
 export class AuthService {
   public users:any={
     admin: {password: '1234', roles:['ADMIN','DENTIST','INFERMIERIE']},
-    user1:{password:'1234',roles:['DENTIST','INFERMIERIE']},
-    user2:{password:'1234',roles:['INFERMIERIE']},
+    Mohammed:{password:'1234',roles:['DENTIST','INFERMIERIE']},
+    FAHD:{password:'1234',roles:['INFERMIERIE']},
   }
 
   public username: any;

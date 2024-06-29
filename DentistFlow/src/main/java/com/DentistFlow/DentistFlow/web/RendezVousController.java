@@ -5,6 +5,7 @@ import com.DentistFlow.DentistFlow.Enum.TypeRendezVous;
 import com.DentistFlow.DentistFlow.entities.Antecedent;
 import com.DentistFlow.DentistFlow.entities.Patient;
 import com.DentistFlow.DentistFlow.entities.RendezVous;
+import com.DentistFlow.DentistFlow.repository.DentistRepository;
 import com.DentistFlow.DentistFlow.repository.RendezVousRepository;
 import com.DentistFlow.DentistFlow.services.RendezVousService;
 import lombok.AllArgsConstructor;
@@ -27,8 +28,8 @@ public class RendezVousController {
     private RendezVousRepository rendezVousRepository;
     @Autowired
     private RendezVousService rendezVousService;
-
-
+    @Autowired
+    private DentistRepository dentistRepository;
 
 
     @GetMapping(path = "/rendezVous")
@@ -49,6 +50,10 @@ public class RendezVousController {
     @GetMapping(path = "/rendezvous/bytyperendzvous")
     public List<RendezVous> RendezVousByTypeRendezVous(@RequestParam TypeRendezVous typeRendezVous){
         return rendezVousRepository.findByTypeRendezVous(typeRendezVous);
+    }
+    @GetMapping("/rendezvousCount")
+    public int RendezVousCount(){
+        return (int) rendezVousRepository.findAll().stream().count();
     }
 
     @GetMapping(path = "/rendezvous/{id}")

@@ -48,6 +48,10 @@ public class PatientController {
     public List<Patient>PatientByEmail(@RequestParam String email){
         return patientRepository.findByEmail(email);
     }
+    @GetMapping("/patientCount")
+    public int PatientCount(){
+        return (int) patientRepository.findAll().stream().count();
+    }
 
     @PostMapping(path = "/patients", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> savePatient(@RequestBody NewPatientDTO newPatientDTO) {

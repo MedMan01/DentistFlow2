@@ -42,6 +42,12 @@ export class PaymentsService {
       );
   }
 
+  public getPaymentById(paymentId: string): Observable<Payment> {
+    return this.http.get<Payment>(`${this.backendUrl}/${paymentId}`)
+      .pipe(
+        catchError(this.handleError<Payment>('getPaymentById' ))
+      );
+  }
 
 
 

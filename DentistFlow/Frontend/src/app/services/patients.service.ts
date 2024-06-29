@@ -59,6 +59,24 @@ export class PatientsService {
     );
   }
 
+  public getCountPatients(): Observable<number> {
+    return this.http.get<number>(`${this.backendUrl}/patientCount`)
+      .pipe(
+        catchError(this.handleError<number>('getCountPatients'))
+      );
+  }
+
+  public getCountSalles(): Observable<number> {
+    return this.http.get<number>(`${this.backendUrl}/SalleCount`)
+      .pipe(
+        catchError(this.handleError<number>('getCountSalles'))
+      );
+  }
+
+
+
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

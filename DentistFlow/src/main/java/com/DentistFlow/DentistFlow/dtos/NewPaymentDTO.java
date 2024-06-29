@@ -1,5 +1,6 @@
 package com.DentistFlow.DentistFlow.dtos;
 
+import com.DentistFlow.DentistFlow.Enum.PaymentStatus;
 import com.DentistFlow.DentistFlow.Enum.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 public class NewPaymentDTO {
        private double amount;
        private PaymentType type;
+       private PaymentStatus status;
        private LocalDate date;
        private Long rendezvousId;
 }

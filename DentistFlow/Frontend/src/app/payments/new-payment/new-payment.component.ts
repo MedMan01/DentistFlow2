@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentType } from '../../model/payment.model';
+import {PaymentStatus, PaymentType} from '../../model/payment.model';
 import { PaymentsService } from '../../services/payments.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class NewPaymentComponent implements OnInit {
   rendezvousId!: string;
   selectedFile: File | null = null;
   paymentTypes: string[] = [];
+  paymentStatus: string[] = [];
   pdfFileUrl!: string;
   showProgress: boolean=false;
 
@@ -26,6 +27,7 @@ export class NewPaymentComponent implements OnInit {
   ngOnInit(): void {
     // Initialiser les types de paiement à partir de l'énumération
     this.paymentTypes = Object.keys(PaymentType).filter(key => isNaN(Number(key)));
+    this.paymentStatus = Object.keys(PaymentStatus).filter(key => isNaN(Number(key)));
 
     // Récupérer l'ID de rendez-vous depuis l'URL
     this.rendezvousId = this.activatedRoute.snapshot.params['rendezvousId'];
@@ -35,6 +37,7 @@ export class NewPaymentComponent implements OnInit {
       date: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0)]],
       type: ['', Validators.required],
+      status: ['', Validators.required],
       rendezvousId: [{ value: this.rendezvousId, disabled: true }, Validators.required],
       fileName: ['']
     });
@@ -73,6 +76,7 @@ export class NewPaymentComponent implements OnInit {
     formData.append('date', formattedDate);
     formData.append('amount', this.paymentFormGroup.value.amount);
     formData.append('type', this.paymentFormGroup.value.type);
+    formData.append('status', this.paymentFormGroup.value.status);
     formData.append('rendezvousId', this.rendezvousId); // Utiliser directement l'ID de rendez-vous
 
     if (this.selectedFile) {

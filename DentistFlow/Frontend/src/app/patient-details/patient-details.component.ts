@@ -4,6 +4,7 @@ import { PatientsService } from '../services/patients.service';
 import { Antecedent } from '../model/patient.model';
 import { MatTableDataSource } from '@angular/material/table';
 import {Rendezvous} from "../model/rendezvous.model";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-patient-details',
@@ -22,7 +23,8 @@ export class PatientDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private patientService: PatientsService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

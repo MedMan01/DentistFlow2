@@ -61,6 +61,10 @@ public class DentistController {
     public Dentist updateDentist(@RequestParam String code,@RequestParam String firstName,@RequestParam String lastName,@PathVariable String id){
         return dentistService.updateDentist(code,firstName,lastName, id);
     }
+    @GetMapping("/dentistCount")
+    public int DentistCount(){
+        return (int) dentistRepository.findAll().stream().count();
+    }
 
     @DeleteMapping("/dentist/{id}")
     public ResponseEntity<?> deleteSalle(@PathVariable String id) {

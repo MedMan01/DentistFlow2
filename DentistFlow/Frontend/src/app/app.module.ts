@@ -46,6 +46,8 @@ import { NewPatientComponent } from './patient/new-patient/new-patient.component
 import { NewDentistComponent } from './dentist/new-dentist/new-dentist.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { PaymentDetailsComponent } from './rendezvous-details/payment-details/payment-details.component';
+import { EditPaymentComponent } from './payments/edit-payment/edit-payment.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     NewAntecedentComponent,
     NewPatientComponent,
     NewDentistComponent,
+    PaymentDetailsComponent,
+    EditPaymentComponent,
   ],
   imports: [
     BrowserModule,

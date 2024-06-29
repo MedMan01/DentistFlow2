@@ -1,18 +1,53 @@
-<div class="container" >
-
-  <mat-card>
-
+<div class="container">
+  <mat-card class="dashboard-card">
     <mat-card-header>
-
       <mat-card-title>
         Dashboard
       </mat-card-title>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
+      <div class="stats-container">
+        <!-- Card for Patients -->
+        <mat-card class="stat-card">
+          <mat-card-header>
+            <mat-card-title>Patients</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ patientCount }}</h2>
+          </mat-card-content>
+        </mat-card>
 
-      Dashboard
+        <!-- Card for Rendezvous -->
+        <mat-card class="stat-card">
+          <mat-card-header>
+            <mat-card-title>Rendez-vous</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ rendezvousCount }}</h2>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Card for Dentists -->
+        <mat-card class="stat-card">
+          <mat-card-header>
+            <mat-card-title>Dentists</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ dentistCount }}</h2>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Card for Salles -->
+        <mat-card class="stat-card">
+          <mat-card-header>
+            <mat-card-title>Salles</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ salleCount }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </mat-card-content>
   </mat-card>
-
 </div>

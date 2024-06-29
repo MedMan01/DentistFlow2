@@ -40,10 +40,12 @@ public class PaymentService {
         Files.copy(file.getInputStream(), filePath);
         RendezVous rendezVous = rendezVousRepository.findById(newPaymentDTO.getRendezvousId()).get();
         Payment payment=Payment.builder()
-                .date(newPaymentDTO.getDate()).type(newPaymentDTO.getType()).rendezVous(rendezVous)
+                .date(newPaymentDTO.getDate())
+                .type(newPaymentDTO.getType())
+                .rendezVous(rendezVous)
                 .amount(newPaymentDTO.getAmount())
                 .file(filePath.toUri().toString())
-                .status(PaymentStatus.CREATED)
+                .status(newPaymentDTO.getStatus())
                 .build();
         return paymentRepository.save(payment);
     }

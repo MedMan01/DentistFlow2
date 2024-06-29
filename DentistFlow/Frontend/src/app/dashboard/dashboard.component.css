@@ -1,0 +1,37 @@
+.container {
+  padding: 20px;
+}
+
+.dashboard-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-card {
+  width: 22%;  /* Ajuster ce pourcentage pour contrôler la largeur des cartes */
+  text-align: center;
+  margin: 10px;
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stat-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}

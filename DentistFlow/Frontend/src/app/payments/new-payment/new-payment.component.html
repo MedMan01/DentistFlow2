@@ -26,6 +26,15 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let t of paymentStatus  " [value]="t">
+            {{ t }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
         <mat-label>RendezVous Id</mat-label>
         <input matInput formControlName="rendezvousId" [value]="rendezvousId" readonly>
       </mat-form-field>

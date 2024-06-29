@@ -55,8 +55,24 @@ export class DentistsService {
     );
   }
 
+  public getPaymentDetails(paymentId: number) {
+    return this.http.get(`${this.backendUrl}/payments/${paymentId}/file`,
+      {responseType:'blob'});
+  }
 
+  public getCountDentists(): Observable<number> {
+    return this.http.get<number>(`${this.backendUrl}/dentistCount`)
+      .pipe(
+        catchError(this.handleError<number>('dentistCount'))
+      );
+  }
 
+  public getCountRendezVous(): Observable<number> {
+    return this.http.get<number>(`${this.backendUrl}/rendezvousCount`)
+      .pipe(
+        catchError(this.handleError<number>('getCountRendezVous'))
+      );
+  }
 
 
 
@@ -78,4 +94,6 @@ export class DentistsService {
       });
     };
   }
+
+
 }

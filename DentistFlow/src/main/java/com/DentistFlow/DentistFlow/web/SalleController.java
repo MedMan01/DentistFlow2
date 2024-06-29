@@ -61,6 +61,10 @@ public class SalleController {
     public Salle saveSalle(String numeroSalle, EtatSalle etatSalle, TypeSalle typeSalle) throws IOException {
         return salleService.saveSalle(numeroSalle, etatSalle, typeSalle);
     }
+    @GetMapping("/SalleCount")
+    public int SalleCount(){
+        return (int) salleRepository.findAll().stream().count();
+    }
 
     @PutMapping("/salles/{id}")
     public Salle updateSalles(String numeroSalle, EtatSalle etatSalle, TypeSalle typeSalle,@PathVariable Long id){
