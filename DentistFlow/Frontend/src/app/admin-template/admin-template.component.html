@@ -19,7 +19,7 @@
 <mat-drawer-container>
   <mat-drawer #myDrawer  opened="true" mode="side" position="start">
     <mat-list>
-      <mat-list-item>
+      <mat-list-item *ngIf="authService.roles.includes('ADMIN')">
         <button mat-button routerLink="/admin/dashboard">
           <mat-icon>dashboard</mat-icon>
           Dashboard</button>
@@ -31,7 +31,7 @@
           Antecedent</button>
 
       </mat-list-item>-->
-      <mat-list-item>
+      <mat-list-item *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('DENTIST')">
         <button mat-button routerLink="/admin/dentists">
           <mat-icon>dashboard</mat-icon>
 

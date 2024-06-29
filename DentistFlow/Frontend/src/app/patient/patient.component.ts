@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {PatientsService} from "../services/patients.service";
 import {Patient} from "../model/patient.model";
 import {Router} from "@angular/router";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-Patient',
@@ -20,7 +21,8 @@ export class PatientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private patientService: PatientsService, private router: Router) {}
+  constructor(private patientService: PatientsService, private router: Router, public authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.patientService.getAllPatients().subscribe({

@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('INFERMIERIE')">
   <button (click)="newPatient()" mat-raised-button color="primary">Add new</button>
 </mat-toolbar>
 <div class="container">
